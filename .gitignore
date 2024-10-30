@@ -1,0 +1,34 @@
+# Node.js dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Next.js build output
+.next/
+out/
+
+# Vercel (if you're deploying to Vercel)
+.vercel/
+
+# MacOS files
+.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+*.gz
+
+# Other
+.idea/                 # JetBrains IDE settings
+.vscode/               # VSCode settings
+coverage/              # Coverage reports
+dist/                  # Any custom build directory
+.cache/                # Temporary cache files
+
+# Typescript (if using TypeScript)
+*.tsbuildinfo

@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fronts/Montserrat/Montserrat-VariableFont_wght.ttf")
+      format("woff2"),
+    url("../assets/fronts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf")
+      format("woff");
+  font-weight: normal; /* Regular weight */
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background); /* Optional: Background color */
+  color: var(--foreground); /* Optional: Text color */
+  font-family: "Montserrat", sans-serif; /* Set the body font here if needed */
+}
+
+/* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 2px; /* Rounded corners for the scrollbar thumb */
+}
