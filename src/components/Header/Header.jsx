@@ -6,6 +6,7 @@ import { Box, Burger, Button, Collapse, Divider } from "@mantine/core";
 import { useWindowDimensions } from "@/utils/helper";
 import { FiMenu } from "react-icons/fi";
 import { ActionIcon } from "@mantine/core";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const menu = [
@@ -16,6 +17,7 @@ const Header = () => {
     { title: "Contact Us", path: "/contact-us" },
   ];
   const [opened, setOpened] = useState(false);
+  const pathname = usePathname();
 
   const { width, height } = useWindowDimensions();
   useEffect(() => {
@@ -49,7 +51,9 @@ const Header = () => {
                     return (
                       <Link
                         href={v.path}
-                        className="text-slate-700	 hover:underline hover:text-white text-xl font-bold	font-montserrat"
+                        className={`${
+                          v.path == pathname ? "underline text-white" : ""
+                        } "text-slate-700 hover:text-white text-xl font-bold font-montserrat"`}
                         key={i}
                       >
                         {v.title}
@@ -76,7 +80,9 @@ const Header = () => {
                     <Box key={i} onClick={() => setOpened(false)}>
                       <Link
                         href={v.path}
-                        className="text-slate-700	 hover:underline hover:text-white text-xl font-bold	font-montserrat"
+                        className={`${
+                          v.path == pathname ? "underline text-white " : ""
+                        } "text-slate-700 hover:text-white text-xl font-bold font-montserrat"`}
                       >
                         {v.title}
                       </Link>
