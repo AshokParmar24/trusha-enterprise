@@ -11,6 +11,7 @@ import image7 from "@/assets/testImage/image7.jpg";
 import image8 from "@/assets/testImage/image8.jpg";
 import { Box, Card, Grid, Text, Title, Transition } from "@mantine/core";
 import Compressor from "../Compressor/Compressor";
+import Maps from "@/components/Maps/Maps"
  
  
 
@@ -107,6 +108,7 @@ const Dashboard = () => {
         </Box>
       </Box>
       <Compressor />
+            <Maps />
     </>
   );
 };
