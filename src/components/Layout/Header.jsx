@@ -30,7 +30,7 @@ const Header = () => {
     <>
       <Box className="flex justify-center">
         <Box
-          className={`{${width}> 768? h-[100px]: h-auto } bg-gray-800 top-5 bg-white z-10 w-full`}
+          className={`{${width}> 768? h-[100px]: h-auto } bg-gray-800 z-10 w-full`}
         >
           <Box className="  w-full p-4 ">
             <Box className=" flex justify-between ">
@@ -68,6 +68,7 @@ const Header = () => {
                     aria-label="Toggle navigation"
                     lineSize={2}
                     opened={opened}
+                    color="white"
                   />
                 )}
               </Box>
@@ -75,7 +76,7 @@ const Header = () => {
           </Box>
 
           <Collapse in={opened}>
-            <Box className="flex flex-col	gap-1 items-start p-4 bg-opacity-50 top-5 bg-white rounded-br-[10px] rounded-bl-[10px]">
+            <Box className="flex flex-col	gap-1 items-start p-4">
               {width <= 768 &&
                 menu?.map((v, i) => {
                   return (
