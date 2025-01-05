@@ -53,7 +53,7 @@ const Header = () => {
                         href={v.path}
                         className={`text-xl font-bold font-montserrat ${
                           v.path === pathname
-                            ? "text-gray-400 underline"
+                            ? "text-white underline"
                             : "text-gray-400 hover:text-white transition-colors duration-300 ease-in-out"
                         }`}
                         key={i}
@@ -84,8 +84,8 @@ const Header = () => {
                         href={v.path}
                         className={`text-xl font-bold font-montserrat ${
                           v.path === pathname
-                            ? "text-sky-300 underline"
-                            : "text-sky-800 hover:text-sky-300 transition-colors duration-300 ease-in-out"
+                            ? "text-white underline"
+                            : "text-gray-400 hover:text-white transition-colors duration-300 ease-in-out"
                         }`}
                       >
                         {v.title}
