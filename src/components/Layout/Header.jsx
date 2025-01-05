@@ -30,7 +30,7 @@ const Header = () => {
     <>
       <Box className="flex justify-center">
         <Box
-          className={`{${width}> 768? h-[100px]: h-auto } fixed  rounded-xl bg-opacity-50 top-5 bg-white z-10 w-[95vw]`}
+          className={`{${width}> 768? h-[100px]: h-auto } bg-gray-800 top-5 bg-white z-10 w-full`}
         >
           <Box className="  w-full p-4 ">
             <Box className=" flex justify-between ">
@@ -51,9 +51,11 @@ const Header = () => {
                     return (
                       <Link
                         href={v.path}
-                        className={`${
-                          v.path == pathname ? "underline text-white" : ""
-                        } "text-slate-700 hover:text-white text-xl font-bold font-montserrat"`}
+                        className={`text-xl font-bold font-montserrat ${
+                          v.path === pathname
+                            ? "text-gray-400 underline"
+                            : "text-gray-400 hover:text-white transition-colors duration-300 ease-in-out"
+                        }`}
                         key={i}
                       >
                         {v.title}
@@ -80,9 +82,11 @@ const Header = () => {
                     <Box key={i} onClick={() => setOpened(false)}>
                       <Link
                         href={v.path}
-                        className={`${
-                          v.path == pathname ? "underline text-white " : ""
-                        } "text-slate-700 hover:text-white text-xl font-bold font-montserrat"`}
+                        className={`text-xl font-bold font-montserrat ${
+                          v.path === pathname
+                            ? "text-sky-300 underline"
+                            : "text-sky-800 hover:text-sky-300 transition-colors duration-300 ease-in-out"
+                        }`}
                       >
                         {v.title}
                       </Link>
