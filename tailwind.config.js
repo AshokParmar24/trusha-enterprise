@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        Blue: {
+          100: "008ED2",
+        },
       },
       fontFamily: {
         montserrat: ['"Montserrat"', "sans-serif"], // Define as an object

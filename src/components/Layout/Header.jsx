@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import logo from "@/assets/logo.png"; // Ensure this path is correct
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Burger, Button, Collapse, Divider } from "@mantine/core";
+import { Box, Burger, Collapse, Divider } from "@mantine/core";
 import { useWindowDimensions } from "@/utils/helper";
 import { FiMenu } from "react-icons/fi";
 import { ActionIcon } from "@mantine/core";
@@ -21,6 +21,7 @@ const Header = () => {
 
   const { width, height } = useWindowDimensions();
   useEffect(() => {
+    console.log('width :>> ', width);
     if (width > 768) {
       setOpened(false);
     }
@@ -30,7 +31,7 @@ const Header = () => {
     <>
       <Box className="flex justify-center">
         <Box
-          className={`{${width}> 768? h-[100px]: h-auto } bg-gray-800 z-10 w-full`}
+          className={`{${width}> 768? h-[100px]: h-auto } bg-white z-10 w-full`}
         >
           <Box className="  w-full p-4 ">
             <Box className=" flex justify-between ">
@@ -40,8 +41,8 @@ const Header = () => {
                 <Image
                   src={logo}
                   alt="Sample Logo" // Use a descriptive alt text
-                  width={80} // Define width and height
-                  height={80} // Ensure the aspect ratio is  preserved
+                  width={200} // Define width and height
+                  height={200} // Ensure the aspect ratio is  preserved
                   className="rounded-md" // Use Tailwind CSS for rounded corners
                 />
               </Box>
@@ -54,7 +55,7 @@ const Header = () => {
                         className={`text-xl font-bold font-montserrat ${
                           v.path === pathname
                             ? "text-white underline"
-                            : "text-gray-400 hover:text-white transition-colors duration-300 ease-in-out"
+                            : "text-Blue-100 hover:text-white transition-colors duration-300 ease-in-out"
                         }`}
                         key={i}
                       >
@@ -68,7 +69,7 @@ const Header = () => {
                     aria-label="Toggle navigation"
                     lineSize={2}
                     opened={opened}
-                    color="white"
+                    color="black"
                   />
                 )}
               </Box>
@@ -86,7 +87,7 @@ const Header = () => {
                         className={`text-xl font-bold font-montserrat ${
                           v.path === pathname
                             ? "text-white underline"
-                            : "text-gray-400 hover:text-white transition-colors duration-300 ease-in-out"
+                            : "text-Blue-100 hover:text-white transition-colors duration-300 ease-in-out"
                         }`}
                       >
                         {v.title}
