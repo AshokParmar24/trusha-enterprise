@@ -16,11 +16,8 @@ import Maps from "@/components/Maps/Maps";
 const images = [image1, image2, image3, image4, image5, image6, image7, image8];
 
 const Dashboard = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+ 
+ 
 
   const settings = {
     dots: false,
@@ -33,8 +30,7 @@ const Dashboard = () => {
     speed: 100,
   };
 
-  if (!isMounted) return null;
-
+ 
   const cardDetails = [
     {
       title: "High Technology Factory",
