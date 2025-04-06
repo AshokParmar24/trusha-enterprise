@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import logo from "@/assets/logo.png"; // Ensure this path is correct
+import logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { Box, Burger, Collapse, Divider } from "@mantine/core";
+import { Box, Burger, Collapse, Container } from "@mantine/core";
 import { useWindowDimensions } from "@/utils/helper";
-import { FiMenu } from "react-icons/fi";
-import { ActionIcon } from "@mantine/core";
 import { usePathname } from "next/navigation";
+import { useMantineTheme } from "@mantine/core";
 
 const Header = () => {
   const menu = [
@@ -16,57 +15,70 @@ const Header = () => {
     { title: "Specification", path: "/specification" },
     { title: "Contact Us", path: "/contact-us" },
   ];
+
+  const theme = useMantineTheme();
+
   const [opened, setOpened] = useState(false);
   const pathname = usePathname();
+  const { width } = useWindowDimensions();
 
-  const { width, height } = useWindowDimensions();
   useEffect(() => {
-    console.log('width :>> ', width);
-    if (width > 768) {
-      setOpened(false);
-    }
+    if (width > 768) setOpened(false);
   }, [width]);
 
+  console.log("theme", theme, theme.colors.grey[0]);
+
   return (
-    <>
-      <Box className="flex justify-center">
-        <Box
-          className={`{${width}> 768? h-[100px]: h-auto } bg-white z-10 w-full`}
-        >
-          <Box className="  w-full p-4 ">
-            <Box className=" flex justify-between ">
+    <Box component="header" className="flex justify-center">
+      <Box
+        component="nav"
+        aria-label="Main Navigation"
+        className={`bg-white z-10 w-full ${
+          width > 768 ? "h-[100px]" : "h-auto"
+        }`}
+      >
+        <Container size="xl">
+          <Box className="w-full p-4">
+            <Box className="flex justify-between">
+              {/* Logo */}
               <Box className="h-full flex items-center">
-                {" "}
-                {/* Center the logo vertically */}
-                <Image
-                  src={logo}
-                  alt="Sample Logo" // Use a descriptive alt text
-                  width={200} // Define width and height
-                  height={200} // Ensure the aspect ratio is  preserved
-                  className="rounded-md" // Use Tailwind CSS for rounded corners
-                />
+                <Link href="/" aria-label="Go to homepage">
+                  <Image
+                    src={logo}
+                    alt="Sample Logo"
+                    width={200}
+                    height={200}
+                    className="rounded-md"
+                  />
+                </Link>
               </Box>
+
+              {/* Desktop Menu */}
               <Box className="flex gap-4 items-center">
                 {width > 768 ? (
-                  menu?.map((v, i) => {
-                    return (
-                      <Link
-                        href={v.path}
-                        className={`text-xl font-bold font-montserrat ${
+                  menu.map((v, i) => (
+                    <Link
+                      href={v.path}
+                      key={i}
+                      className={`text-xl font-bold  underline-offset-4 transition-colors duration-300 ease-in-out ${
+                        v.path === pathname ? "underline" : "hover:underline"
+                      }`}
+                      style={{
+                        color:
                           v.path === pathname
-                            ? "text-white underline"
-                            : "text-Blue-100 hover:text-white transition-colors duration-300 ease-in-out"
-                        }`}
-                        key={i}
-                      >
-                        {v.title}
-                      </Link>
-                    );
-                  })
+                            ? theme.colors.blue[0]
+                            : theme.colors.grey[0],
+                        fontFamily: theme.menu.fontFamily,
+                      }}
+                      aria-current={v.path === pathname ? "page" : undefined}
+                    >
+                      {v.title}
+                    </Link>
+                  ))
                 ) : (
                   <Burger
-                    onClick={() => setOpened(() => !opened)}
-                    aria-label="Toggle navigation"
+                    onClick={() => setOpened((prev) => !prev)}
+                    aria-label="Toggle navigation menu"
                     lineSize={2}
                     opened={opened}
                     color="black"
@@ -75,31 +87,42 @@ const Header = () => {
               </Box>
             </Box>
           </Box>
+        </Container>
 
-          <Collapse in={opened}>
-            <Box className="flex flex-col	gap-1 items-start p-4">
+        {/* Mobile Menu */}
+        <Collapse in={opened}>
+          <Container size="xl">
+            <Box
+              component="ul"
+              className="flex flex-col gap-1 items-start p-4 list-none"
+            >
               {width <= 768 &&
-                menu?.map((v, i) => {
-                  return (
-                    <Box key={i} onClick={() => setOpened(false)}>
-                      <Link
-                        href={v.path}
-                        className={`text-xl font-bold font-montserrat ${
+                menu.map((v, i) => (
+                  <Box component="li" key={i} onClick={() => setOpened(false)}>
+                    <Link
+                      href={v.path}
+                      className={`text-xl font-bold  underline-offset-4 transition-colors duration-300 ease-in-out ${
+                        v.path === pathname ? "underline" : "hover:underline"
+                      }`}
+                      style={{
+                        color:
                           v.path === pathname
-                            ? "text-white underline"
-                            : "text-Blue-100 hover:text-white transition-colors duration-300 ease-in-out"
-                        }`}
-                      >
-                        {v.title}
-                      </Link>
-                    </Box>
-                  );
-                })}
+                            ? theme.colors.blue[0]
+                            : theme.colors.grey[0],
+                        fontFamily: theme.menu.fontFamily,
+                        
+                      }}
+                      aria-current={v.path === pathname ? "page" : undefined}
+                    >
+                      {v.title}
+                    </Link>
+                  </Box>
+                ))}
             </Box>
-          </Collapse>
-        </Box>
+          </Container>
+        </Collapse>
       </Box>
-    </>
+    </Box>
   );
 };
 
