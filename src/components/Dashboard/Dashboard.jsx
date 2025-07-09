@@ -94,7 +94,7 @@ const Dashboard = () => {
 
         {/* Features Section */}
         <section style={{ backgroundColor: "#f9fafb" }}>
-          <Container py={50}>
+          <Container size="lg" py={50}>
             <Title order={2} mb="xl" align="center">
               Why Choose Us
             </Title>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import { Modal } from "@mantine/core";
-
+ 
 const Model = (props) => {
   const { nodes, materials } = useGLTF("/medais/old_air_compressor.glb");
 
