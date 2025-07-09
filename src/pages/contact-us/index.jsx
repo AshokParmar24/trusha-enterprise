@@ -1,6 +1,5 @@
+import ContactUs from "@/components/ContactUs";
 
+const ContactUsPage = () => <ContactUs />;
 
-const ContactUs = () => <div>Contact Us</div>;
-
-export default ContactUs;
-    
+export default ContactUsPage;
