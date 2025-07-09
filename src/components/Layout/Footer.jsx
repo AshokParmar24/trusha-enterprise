@@ -16,7 +16,8 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   const theme = useMantineTheme();
-  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [errors, setErrors] = useState("");
 
   const menu = [
     { title: "Home", path: "/" },
@@ -30,8 +31,33 @@ const Footer = () => {
   const grey = theme.colors.grey[0];
   const white = "#ffffff";
 
+  const validate = () => {
+    let isValid = true;
+
+    // Mobile validation (10-digit)
+    if (!mobile.trim()) {
+      setErrors("Mobile number is required");
+      isValid = false;
+    } else if (!/^\d{10}$/.test(mobile.trim())) {
+      setErrors("Enter a valid 10-digit mobile number");
+      isValid = false;
+    }
+
+     return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validate()) {
+       setMobile("");
+    }
+  };
+
   return (
-    <footer style={{ backgroundColor: "#1f2937", color: white, padding: "3rem 0" }}>
+    <footer
+      style={{ backgroundColor: "#1f2937", color: white, padding: "3rem 0" }}
+    >
       <Container size="lg">
         <Grid gutter="xl">
           {/* Quick Links */}
@@ -63,9 +89,15 @@ const Footer = () => {
             <Title order={4} mb="sm" style={{ color: white }}>
               Contact Us
             </Title>
-            <Text size="sm" style={{ color: grey }}>Email: contact@yourcompany.com</Text>
-            <Text size="sm" style={{ color: grey }}>Address: 123 Main Street</Text>
-            <Text size="sm" style={{ color: grey }}>Phone: +1 234 567 890</Text>
+            <Text size="sm" style={{ color: grey }}>
+              Email: contact@yourcompany.com
+            </Text>
+            <Text size="sm" style={{ color: grey }}>
+              Address: 123 Main Street
+            </Text>
+            <Text size="sm" style={{ color: grey }}>
+              Phone: +1 234 567 890
+            </Text>
           </Grid.Col>
 
           {/* Social Media */}
@@ -85,8 +117,12 @@ const Footer = () => {
                   href={social.link}
                   target="_blank"
                   style={{ transition: "transform 0.2s" }}
-                  onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                  onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.transform = "scale(1.2)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
                 >
                   <social.icon size={22} color={grey} />
                 </Anchor>
@@ -99,48 +135,50 @@ const Footer = () => {
             <Title order={4} mb="sm" style={{ color: white }}>
               Get in Touch
             </Title>
-            <Box
-              component="form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!email) return;
-                alert(`Thank you for subscribing with ${email}`);
-                setEmail("");
-              }}
-              style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
-            >
-              <Text size="sm" style={{ color: grey }}>
-                Subscribe to our newsletter for updates and offers
-              </Text>
-
-              <TextInput
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.currentTarget.value)}
-                required
-                radius="md"
-                size="sm"
-                styles={{
-                  input: {
-                    backgroundColor: "#1F2937",
-                    borderColor: "#374151",
-                    color: white,
-                  },
-                }}
-              />
-              <Button
-                type="submit"
-                radius="md"
-                fullWidth
-                size="sm"
+            <form onSubmit={handleSubmit}>
+              <Box
                 style={{
-                  fontWeight: 500,
-                  backgroundColor: blue,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
                 }}
               >
-                Subscribe
-              </Button>
-            </Box>
+                <Text size="sm" style={{ color: grey }}>
+                  Subscribe to our newsletter for updates and offers
+                </Text>
+
+                <TextInput
+                  placeholder="Enter your mobile number"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.currentTarget.value)}
+                  required
+                  radius="md"
+                  size="sm"
+                  error={errors.mobile}
+                  type="tel"
+                  mt="sm"
+                  styles={{
+                    input: {
+                      backgroundColor: "#1F2937",
+                      borderColor: "#374151",
+                      color: "white",
+                    },
+                  }}
+                />
+                <Button
+                  type="submit"
+                  radius="md"
+                  fullWidth
+                  size="sm"
+                  style={{
+                    fontWeight: 500,
+                    backgroundColor: blue,
+                  }}
+                >
+                  Subscribe
+                </Button>
+              </Box>
+            </form>
           </Grid.Col>
         </Grid>
 

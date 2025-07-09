@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import Model from "./Modal";
 import { Environment } from "@react-three/drei";
 import { useMotionValue, useSpring } from "framer-motion";
+import { Container } from "@mantine/core";
 
 const Compressor = () => {
   const mouse = {
@@ -31,22 +32,24 @@ const Compressor = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        cursor: "pointer", // This allows interactions with mouse events
-      }}
-    >
-      <Canvas
-        style={{ background: "#e0e0e2" }}
-        orthographic
-        camera={{ position: [0, 0, 200], zoom: 30 }}
+    <Container size="xl" px={0} py={0} fluid>
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          cursor: "pointer",
+        }}
       >
-        <Model mouse={smoothMouse} />
-        <Environment preset="studio" />
-      </Canvas>
-    </div>
+        <Canvas
+          style={{ background: "#e0e0e2" }}
+          orthographic
+          camera={{ position: [0, 0, 200], zoom: 30 }}
+        >
+          <Model mouse={smoothMouse} />
+          <Environment preset="studio" />
+        </Canvas>
+      </div>
+    </Container>
   );
 };
 
