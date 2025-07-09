@@ -5,18 +5,22 @@ import "@mantine/core/styles.css";
 import Layout from "@/components/Layout/Layout";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import store from "@/redux/store/store";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       {" "}
       <ToastContainer position="top-right" autoClose={3000} />
-      <MantineProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>{" "}
-        <ScrollToTop />
-      </MantineProvider>
+      <Provider store={store}>
+        <MantineProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>{" "}
+          <ScrollToTop />
+        </MantineProvider>
+      </Provider>
     </>
   );
 }
