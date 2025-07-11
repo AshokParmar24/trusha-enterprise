@@ -14,6 +14,7 @@ const Header = () => {
     { title: "Products", path: "/products" },
     { title: "Specification", path: "/specification" },
     { title: "Contact Us", path: "/contact-us" },
+    { title: "Chat", path: "/chat" },
   ];
 
   const theme = useMantineTheme();
@@ -110,7 +111,6 @@ const Header = () => {
                             ? theme.colors.blue[0]
                             : theme.colors.grey[0],
                         fontFamily: theme.menu.fontFamily,
-                        
                       }}
                       aria-current={v.path === pathname ? "page" : undefined}
                     >

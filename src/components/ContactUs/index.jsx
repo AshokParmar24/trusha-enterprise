@@ -7,7 +7,7 @@ import {
   formatNumber,
   parsePhoneNumber,
 } from "libphonenumber-js";
-import "./contactus.css";
+import "@/components/ContactUs/contactus.css";
 import { Divider, Radio, Group, Input } from "@mantine/core";
 import { registation } from "@/services/api";
 import { toast } from "react-toastify";
