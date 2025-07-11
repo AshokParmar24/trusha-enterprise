@@ -1,6 +1,6 @@
 import ContactUs from "@/components/ContactUs";
 
-const ContactUsPage = () => "djkfhthero";
+const ContactUsPage = () => <ContactUs />;
 
 export default ContactUsPage;
 
