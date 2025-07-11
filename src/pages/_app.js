@@ -7,6 +7,8 @@ import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import store from "@/redux/store/store";
+import "@/components/Chatbox/chatbox.css";
+import "@/components/ContactUs/contactus.css"
  
 export default function App({ Component, pageProps }) {
   return (
