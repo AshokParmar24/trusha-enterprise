@@ -12,6 +12,8 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://unpkg.com/stream-chat-react/dist/css/v2/index.css" />
+
       </Head>
       <body className="antialiased">
         <Main />
