@@ -19,7 +19,7 @@ import {
   Thread,
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/v2/index.css";
-import "./chat.css";
+import "@/pages/chat/chat.css";
 
 const apiKey = "gend75q59h9y";
 const userId = "1404083";
