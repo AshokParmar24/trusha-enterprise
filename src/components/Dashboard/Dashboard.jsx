@@ -100,7 +100,7 @@ const Dashboard = () => {
             </Title>
             <Grid gutter={{ base: 5, xs: "md", md: "xl", xl: 50 }}>
               {cardDetails.map((v, i) => (
-                <Grid.Col span={{ base: 12, md: 4 }} key={i}>
+                <Grid.Col span={{ base: 12,sm:6, md: 4 }} key={i}>
                   <article>
                     <Card shadow="sm" padding="xl" radius="md" withBorder>
                       <Card.Section>
