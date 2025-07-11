@@ -4,6 +4,8 @@ import {
   createChannelApi,
   createToken,
 } from "@/services/api";
+import { Avatar, Text, Group, Box, Badge } from "@mantine/core";
+
 import { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
 import {
@@ -18,8 +20,6 @@ import {
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/v2/index.css";
 import "./chat.css";
-import { Button } from "@mantine/core";
-import { Box } from "@react-three/drei";
 
 const apiKey = "gend75q59h9y";
 const userId = "1404083";
@@ -110,37 +110,52 @@ const ChatBox = () => {
       <Box className="chat-container">
         <Chat client={client} theme="messaging light">
           <ChannelList
-            sort={sort}
             filters={filters}
+            sort={sort}
             options={options}
-            // Preview={(props) => {
-            //   console.log("propspropsprops :>> ", props);
-            //   const { channel, setActiveChannel } = props;
-            //   console.log("channel :>> ", channel);
-            //   console.log("chansetActiveChannelnel :>> ", setActiveChannel);
+            Preview={({ channel, setActiveChannel }) => {
+              const members = Object.values(channel.state.members || {});
+              const other = members.find((m) => m.user.id !== userId);
+              const isGroup = members.length > 2;
 
-            //   const members = Object.values(channel.state.members || {});
-            //   const other = members.find((m) => m.user.id !== userId);
-            //   const isGroup = members.length > 2;
-            //   const name = isGroup ? channel.data.name : other?.user?.name;
-            //   const isOnline = other?.user?.online;
-            //   console.log("isOnline :>> ", isOnline);
-            //   return (
-            //     <Button
-            //       onClick={() => setActiveChannel(channel)}
-            //       className="custom-channel-preview"
-            //       style={{
-            //         padding: "12px",
-            //         cursor: "pointer",
-            //         background:
-            //           channel.id === props.channel?.id ? "red" : "#222",
-            //         color: "#fff",
-            //       }}
-            //     >
-            //       {name || "Chat"} {isOnline ? "🟢" : "⚫️"}
-            //     </Button>
-            //   );
-            // }}
+              const name = isGroup
+                ? channel.data.name
+                : other?.user?.name || "Chat";
+              const avatar = isGroup
+                ? "https://ui-avatars.com/api/?name=" + name
+                : other?.user?.image ||
+                  "https://ui-avatars.com/api/?name=" + name;
+
+              const isOnline = other?.user?.online;
+              const lastMessage =
+                channel.state.messages?.[channel.state.messages.length - 1]
+                  ?.text || "";
+
+              return (
+                <Box
+                  onClick={() => setActiveChannel(channel)}
+                  className="hover:bg-gray-100 cursor-pointer px-4 py-2 border-b border-gray-200"
+                >
+                  <Group noWrap align="center">
+                    <div className="relative">
+                      <Avatar src={avatar} radius="xl" size="md" />
+                      <div
+                        className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
+                          isOnline ? "bg-green-500" : "bg-gray-400"
+                        }`}
+                      ></div>
+                    </div>
+
+                    <div className="flex-1">
+                      <Text fw={500}>{name}</Text>
+                      <Text size="xs" c="dimmed" truncate>
+                        {lastMessage || "Start chatting..."}
+                      </Text>
+                    </div>
+                  </Group>
+                </Box>
+              );
+            }}
           />
           <Channel>
             <Window>
